@@ -33,8 +33,9 @@ public class Solution {
         System.out.print("result="+ Arrays.toString(searchRange(nums,target)));
     }
 	
-	   private  int binarySearch(int[] nums, int target, boolean searchLeft) {
-        int leftIndex = 0;
+
+   private static int binarySearch(int[] nums, int target, boolean searchLeft,int startIndex) {
+        int leftIndex = startIndex;
         int rightIndex = nums.length;
         int cur = 0;
         while (leftIndex < rightIndex) {
@@ -48,15 +49,18 @@ public class Solution {
         return leftIndex;
     }
 
+
     public static int[] searchRange(int[] nums, int target) {
         int position[]={-1,-1};
-        int pre = binarySearch(nums,target,true);
+        int pre = binarySearch(nums,target,true,0);
         if (pre==nums.length || nums[pre]!=target) {
             return position;
         }
         position[0]=pre;
-        position[1]=binarySearch(nums,target,false)-1;        
+        position[1]=binarySearch(nums,target,false,pre)-1;        
         return position;
+
+
     }
 
 
